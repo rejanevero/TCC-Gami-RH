@@ -11,4 +11,4 @@
 
 <h2>GAMIFICAÇÃO EM PROCESSOS DE RH</h2> 
 
-<h2>Trello: https://trello.com/b/cNcJr4VP/projeto-gamificacao-em-processos-de-rh</h2> 
+
