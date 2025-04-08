@@ -4,5 +4,16 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
-    background-color: #99e89d;
-     }
+	 }
+     /* No seu arquivo style.css ou outro CSS */
+.bg-custom-purple {
+    background-color: #4b0082 !important; /* Use !important para garantir que sobrescreva o Bootstrap, se necessário */
+}
+/* No seu arquivo style.css ou outro CSS */
+.bg-custom-orange {
+    background-color: #ff9800 !important; /* Use !important para garantir que sobrescreva o Bootstrap, se necessário */
+}
+/* No seu arquivo style.css ou outro CSS */
+.bg-custom-green-lemon {
+    background-color: #99e89d !important; /* Use !important para garantir que sobrescreva o Bootstrap, se necessário */
+}
