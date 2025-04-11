@@ -17,5 +17,11 @@
 .bg-custom-green-lemon {
     background-color: #99e89d !important; /* Use !important para garantir que sobrescreva o Bootstrap, se necessário */
 }
+.card-title{
+font-size:60px
+}
+
+    
+
 
   
