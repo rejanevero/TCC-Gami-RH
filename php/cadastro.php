@@ -11,7 +11,7 @@
         // Conexão com o banco de dados
         $host = "localhost";
         $usuario = "root";
-        $senha = "";
+        $senha = "usbw";
         $banco = "sistema_gami";
         $conn = new mysqli($host, $usuario, $senha, $banco);
 
