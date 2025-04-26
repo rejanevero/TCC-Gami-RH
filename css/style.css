@@ -5,9 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-#card1{
-    background-color: var(--color-green-300);
-}
+
 
 
   
