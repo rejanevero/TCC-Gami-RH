@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="./img/favicon/pranchetafavicon-32x32.png">
+    <link rel="stylesheet" href="./css/cadastro-colaborador.css">
+    <title>Cadastro Colaborador</title>
+</head>
+<body>
+  <header class="bg-purple-950 text-white py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+        <nav class="space-x-4">
+            <a href="index.html" class="hover:text-green-300 transition duration-300">Voltar ao Home</a>
+           </nav>
+        </div>
+    </header>
+    <div class="bg-green-300 flex justify-center items-center min-h-screen"> <div class="bg-white rounded-lg shadow-md p-8 w-full max-w-md"> <h2 class="text-2xl font-bold text-purple-950 mb-6 text-center">Cadastro Colaborador</h2> <form action="./php/cadastro-colaborador.php" method="post" class="w-full">
+      <div class="mb-4">
+          <label class="block text-purple-950 text-sm font-bold mb-2" for="nome">
+              Nome completo:
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nome" type="text" placeholder="Nome completo" name="nome">
+      </div>
+      <div class="mb-4">
+          <label class="block text-purple-950 text-sm font-bold mb-2" for="email">
+              Email:
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Digite seu endereço de e-mail" name="email">
+      </div>
+      <div class="mb-4">
+          <label class="inline-flex items-center">
+              <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-600 rounded">
+              <span class="ml-2 text-gray-700 text-sm">
+                  Envie-me sua newsletter!
+              </span>
+          </label>
+      </div>
+      <div class="flex items-center justify-center"> <button class="bg-purple-950 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              Cadastrar
+          </button>
+      </div>
+  </form>
+</div>
+</div>
+</div>
+</html>
+    
+    
+    
+    
+    
+    
+    
+    

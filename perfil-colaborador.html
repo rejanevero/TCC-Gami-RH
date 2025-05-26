@@ -1,32 +1,164 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/perfil-colaborador.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
-    <link rel="icon" href="./img/favicon/tagfavicon-32x32.png">
-    <title>Painel Colaborador</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RH XP - Tela Colaborador</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --roxo: #6B21A8;
+      --laranja: #F97316;
+      --verde: #22C55E;
+    }
+    .bg-roxo { background-color: var(--roxo); }
+    .text-roxo { color: var(--roxo); }
+    .border-roxo { border-color: var(--roxo); }
+    .bg-laranja { background-color: var(--laranja); }
+    .text-laranja { color: var(--laranja); }
+    .border-laranja { border-color: var(--laranja); }
+    .bg-verde { background-color: var(--verde); }
+    .text-verde { color: var(--verde); }
+    .border-verde { border-color: var(--verde); }
+
+    #notificacao {
+      position: fixed;
+      top: 4rem;
+      right: 1rem;
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: white;
+      border: 1px solid #fbbf24;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(251,191,36,0.5);
+      padding: 1rem;
+      display: none;
+      z-index: 9999;
+    }
+  </style>
 </head>
-<body>
-<!-- As a link -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-custom-purple">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">
-      <img src="./img/logo/logo.png" alt="RH XP Logo" width="35" height="35" class="d-inline-block align-text-top"> RH XP</a>  
+<body class="bg-gray-50 min-h-screen flex flex-col items-center p-6 font-sans">
+
+  <!-- Botões Início e Notificações -->
+  <div class="fixed top-4 right-4 flex gap-3 z-50">
+    <a href="sobre.html" class="bg-verde text-white px-4 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow-md">
+      Início
+    </a>
+    <button id="btnToggleNotificacao" class="bg-laranja text-white px-4 py-2 rounded-full font-semibold hover:bg-orange-600 transition shadow-md">
+      Notificações
+    </button>
   </div>
-</nav>
-  <h1>Painel Colaborador</h1>
-  <a href="index.html"> Voltar para a Página Inicial </a>
 
+  <!-- Painel de notificações -->
+  <div id="notificacao"></div>
 
+  <!-- Logo -->
+  <header class="w-full max-w-4xl mb-8 flex items-center justify-start gap-3">
+    <div class="text-roxo font-extrabold text-3xl select-none">RH XP</div>
+  </header>
 
+  <!-- Perfil do colaborador -->
+  <section class="w-full max-w-4xl bg-white rounded-xl shadow-lg p-6 mb-8 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-4">
+      <img id="fotoPerfil" class="w-20 h-20 rounded-full border-4 border-roxo object-cover" />
+      <div>
+        <h1 id="nomeColaborador" class="text-2xl font-bold text-roxo"></h1>
+        <p class="text-gray-600 font-medium" id="cargoColaborador"></p>
+      </div>
+    </div>
+    <div class="flex flex-col items-center justify-center">
+      <div class="relative w-28 h-28">
+        <svg class="w-28 h-28 transform -rotate-90" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" stroke="#E5E7EB" stroke-width="10" fill="none" />
+          <circle id="barraProgresso" cx="50" cy="50" r="45" stroke="var(--laranja)" stroke-width="10" stroke-linecap="round" fill="none" stroke-dasharray="282.74" />
+        </svg>
+        <div class="absolute inset-0 flex items-center justify-center text-laranja font-bold text-2xl" id="porcentagemTexto"></div>
+      </div>
+      <p class="mt-2 text-gray-600 font-semibold">Tarefas concluídas</p>
+    </div>
+  </section>
 
+  <!-- Missões -->
+  <section class="w-full max-w-4xl bg-white rounded-xl shadow-lg p-6">
+    <h2 class="text-xl font-bold text-roxo mb-6">Missões</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-purple-100 border-l-4 border-roxo p-4 rounded-lg shadow-md">
+        <h3 class="font-semibold text-roxo text-lg mb-1">Finalizar Onboarding</h3>
+        <p class="text-gray-600 text-sm mb-3">Complete todas as etapas do processo de integração da empresa.</p>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-roxo h-3 rounded-full" style="width: 100%"></div>
+        </div>
+        <p class="text-sm text-right text-roxo font-medium mt-1">100% concluído</p>
+      </div>
+      <div class="bg-orange-100 border-l-4 border-laranja p-4 rounded-lg shadow-md">
+        <h3 class="font-semibold text-laranja text-lg mb-1">Entregar Projeto X</h3>
+        <p class="text-gray-600 text-sm mb-3">Finalize e envie a entrega do projeto designado.</p>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-laranja h-3 rounded-full" style="width: 70%"></div>
+        </div>
+        <p class="text-sm text-right text-laranja font-medium mt-1">70% concluído</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- Histórico e Desafios -->
+  <section class="w-full max-w-4xl bg-white rounded-xl shadow-lg p-6 mt-8 flex justify-around">
+    <a href="historico-pontuacoes.html" class="px-6 py-3 bg-roxo text-white rounded-lg font-semibold hover:bg-purple-700 transition">
+      Histórico de Pontuações
+    </a>
+    <a href="desafios-ativos.html" class="px-6 py-3 bg-laranja text-white rounded-lg font-semibold hover:bg-orange-600 transition">
+      Desafios Ativos
+    </a>
+  </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js">
-  
+  <script>
+    const usuario = {
+      nome: "Emilly Nayara",
+      cargo: "Desenvolvedora",
+      foto: "C:/Users/Emill/OneDrive/Área de Trabalho/TCC-Gami-RH/img/colaborador/emilly.jpeg",
+      progresso: 70,
+      missoes: [
+        { nome: "Finalizar Onboarding", progresso: 100 },
+        { nome: "Entregar Projeto X", progresso: 70 }
+      ]
+    };
+
+    document.getElementById("nomeColaborador").textContent = usuario.nome;
+    document.getElementById("cargoColaborador").textContent = usuario.cargo;
+    document.getElementById("fotoPerfil").src = usuario.foto;
+    document.getElementById("porcentagemTexto").textContent = `${usuario.progresso}%`;
+
+    const dashOffset = 282.74 - (usuario.progresso / 100) * 282.74;
+    document.getElementById("barraProgresso").setAttribute("stroke-dashoffset", dashOffset);
+
+    const notificacoes = [];
+    usuario.missoes.forEach(missao => {
+      if (missao.progresso === 100) {
+        notificacoes.push(`🎉 Parabéns ${usuario.nome}! Você concluiu a missão "${missao.nome}".`);
+      } else if (missao.progresso >= 60 && missao.progresso < 100) {
+        notificacoes.push(`⏰ Atenção ${usuario.nome}! O prazo da missão "${missao.nome}" está próximo.`);
+      }
+    });
+
+    const container = document.getElementById("notificacao");
+    notificacoes.forEach(msg => {
+      const div = document.createElement("div");
+      div.className = "bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-3 rounded-lg shadow-md mb-3";
+      div.textContent = msg;
+      container.appendChild(div);
+    });
+
+    const btnToggle = document.getElementById("btnToggleNotificacao");
+    btnToggle.addEventListener("click", () => {
+      container.style.display = (container.style.display === "block") ? "none" : "block";
+    });
   </script>
+
 </body>
 </html>
+
+
+
+
+

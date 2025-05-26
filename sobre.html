@@ -4,38 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="./img/favicon/impressaofavicon-32x32.png">
     <link rel="stylesheet" href="./css/sobre.css">
-    <title>Sobre</title>
+    <title>RH XP - Sobre</title>
 </head>
-<body>
-  <header class="bg-purple-950 text-white py-4">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-        <nav class="space-x-4">
-            <a href="index.html" class="hover:text-green-300 transition duration-300">Voltar ao Home</a>
-           </nav>
+<body class="bg-white text-gray-800">
+    <header class="bg-purple-950 text-white py-4 shadow-md">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">RH XP</h1>
+            <a href="index.html" class="bg-green-300 text-purple-950 font-semibold px-4 py-2 rounded-lg hover:bg-green-400 transition duration-300">Login/Cadastro</a>
         </div>
     </header>
-    <main class="flex px-6 drop-shadow-2xl lg:w-3/4 ml-11">
 
-      <section class="bg-azul-escuro hidden lg:block w-1/2 rounded-l-lg ">
-          <img class="p-6 m-auto" src="./img/astronauta.svg" alt="astronauta">
-      </section>
+    <main class="flex flex-col lg:flex-row items-center justify-center min-h-screen p-8 lg:px-20">
+        <!-- Lado esquerdo com imagem -->
+        <section class="hidden lg:block lg:w-1/2">
+            <img src="./img/astronauta.svg" alt="astronauta" class="w-full max-w-md mx-auto">
+        </section>
 
-      <section class="bg-green-300 p-10 flex flex-col gap-6 rounded-lg lg:w-1/2 justify-center lg:rounded-l-none">             
-
-          <div class="text-justify">
-              <h2 class="text-4xl mb-2">Sobre nós</h2>
-              <br>
-              <p class="text-xl text-purple-950 mb-2">Somos uma solução inovadora criada para transformar a gestão de pessoas dentro das empresas por meio da gamificação. Nosso propósito é tornar os processos de RH mais dinâmicos, engajadores e eficientes, usando mecânicas de jogo para estimular o desempenho, a colaboração e o desenvolvimento contínuo das equipes.
-                Desenvolvido com foco na experiência do colaborador, nosso aplicativo oferece ferramentas que permitem acompanhar metas, recompensar conquistas e promover uma cultura de reconhecimento. Acreditamos que quando o ambiente de trabalho se torna mais motivador, todos crescem e os resultados aparecem.</p>
-          </div>
-          
-      </section>
-  </main>
-    
+        <!-- Lado direito com o texto -->
+        <section class="bg-green-300 p-10 rounded-xl shadow-lg lg:ml-12 lg:w-1/2 mt-8 lg:mt-0">
+            <h2 class="text-4xl font-bold text-purple-950 mb-4">Sobre nós</h2>
+            <p class="text-lg text-justify text-purple-950 leading-relaxed">
+                Somos uma solução inovadora criada para transformar a gestão de pessoas dentro das empresas por meio da gamificação. Nosso propósito é tornar os processos de RH mais dinâmicos, engajadores e eficientes, usando mecânicas de jogo para estimular o desempenho, a colaboração e o desenvolvimento contínuo das equipes.
+                <br><br>
+                Desenvolvido com foco na experiência do colaborador, nosso aplicativo oferece ferramentas que permitem acompanhar metas, recompensar conquistas e promover uma cultura de reconhecimento. Acreditamos que quando o ambiente de trabalho se torna mais motivador, todos crescem e os resultados aparecem.
+            </p>
+        </section>
+    </main>
 </body>
 </html>

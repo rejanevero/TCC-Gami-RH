@@ -1,57 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="./img/favicon/medalhafavicon-32x32.png">          
-     <link rel="stylesheet" href="./css/style.css">
-  <!--meta tag og-->
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="RH XP"/>
-        <meta property="og:image" content="https://tcc-gami-rh.vercel.app/img/logo/logo.png"/>
-        <meta property="og:description" content="A RH XP é especialista em Gamificação para processos de RH, desenvolvendo módulos de treinamento interativos que engajam e motivam colaboradores, tornando o ambiente de trabalho mais dinâmico e produtivo."/>
-        <meta property="og:site_name" content="RH XP"/>
-  <title>RH XP</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GamiRH - Início</title>
+  <script defer>
+    function toggleModal() {
+      const modal = document.getElementById('cadastroModal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <header class="bg-purple-950 text-white py-4">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-        <nav class="space-x-4">
-            <a href="index.html" class="hover:text-green-300 transition duration-300">Home</a>
-            <a href="sobre.html" class="hover:text-green-300 transition duration-300">Sobre</a>
-            <a href="contato.html" class="hover:text-green-300 transition duration-300">Contato</a>
-            <a href="cadastro-colaborador.html" class="hover:text-green-300 transition duration-300">Cadastrar</a>
-            <a href="#Login" class="hover:text-green-300 transition duration-300">Login</a>
-           </nav>
-        </div>
-    </header>      
+<body class="bg-gradient-to-br from-indigo-600 to-purple-800 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-10 rounded-2xl shadow-xl w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
     
-    <br>
-  </div>
-      <div class=" flex justify-center space-x-4">
-        <img class="m-auto block w-30 h-auto" src="./img/logo/logo.png" alt="Logotipo RH XP">
+    <!-- Apresentação -->
+    <div class="flex flex-col justify-center">
+      <h1 class="text-4xl font-bold text-indigo-800 mb-4">Bem-vindo ao RH XP</h1>
+      <p class="text-gray-700 text-lg mb-6">Uma plataforma gamificada para transformar a gestão de pessoas em uma experiência motivadora e eficiente.</p>
+      <img src="C:\Users\Emill\OneDrive\Área de Trabalho\TCC-Gami-RH\img\logo\logo.png" alt="logo.png" class="w-30 md:w-30">
     </div>
-    <br>
-    <div class="ml-12">
-      <h3 class="text-5xl font-semibold text-purple-950 mb-4">Potencialize sua equipe <br>com a força da gamificação</h3>
-      <br>  
-      <p class="text-purple-950 text-2xl">Transforme o RH em uma jornada épica -- <br>engaje, motive e evolua com gamificação!.</p>
-        </div>     
-    
-        <div class=" justify-items-end flex-end space-x-4 ">
-        <img class="w-50 h-auto" src="https://img.freepik.com/vetores-gratis/conceito-de-inovacao-desenhado-a-mao_23-2149171244.jpg?semt=ais_hybrid&w=740" alt="escada">
-          </div>  
-   
-  <br>  
-</div>
-    <footer class="bg-purple-950 text-white py-4">
-    <div class="container mx-auto px-4 text-center">
-        <p>© 2025 RH XP. Todos os direitos reservados.</p>
-           </div>
-</footer>
-   </body>
+
+    <!-- Login -->
+    <div class="bg-gray-50 p-6 rounded-xl shadow-inner">
+      <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Entrar no sistema</h2>
+      <form action="#" method="POST" class="space-y-4">
+        <div>
+          <label class="block mb-1 text-gray-600">E-mail</label>
+          <input type="email" name="email" class="w-full px-4 py-2 border rounded-xl" required>
+        </div>
+        <div>
+          <label class="block mb-1 text-gray-600">Senha</label>
+          <input type="password" name="senha" class="w-full px-4 py-2 border rounded-xl" required>
+        </div>
+        <div>
+          <label class="block mb-1 text-gray-600">Tipo de usuário</label>
+          <select name="tipo" class="w-full px-4 py-2 border rounded-xl">
+            <option value="colaborador">Colaborador</option>
+            <option value="gerente">Gerente</option>
+            <option value="scrum">Scrum Master</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-xl hover:bg-indigo-700">Entrar</button>
+      </form>
+      <div class="text-center mt-4">
+        <button onclick="toggleModal()" class="text-indigo-600 hover:underline">Criar conta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Cadastro -->
+  <div id="cadastroModal" class="fixed inset-0 bg-black bg-opacity-40 hidden justify-center items-center z-50">
+    <div class="bg-white rounded-2xl p-8 shadow-xl w-full max-w-lg relative">
+      <button onclick="toggleModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+      <h2 class="text-2xl font-bold text-center text-indigo-700 mb-6">Cadastro de Colaborador</h2>
+      <form action="cadastro.php" method="POST" class="space-y-4">
+  <div>
+    <label class="block text-gray-600 mb-1">Nome completo</label>
+    <input type="text" name="nome" class="w-full px-4 py-2 border rounded-xl" required>
+  </div>
+  
+  <div>
+    <label class="block text-gray-600 mb-1">E-mail</label>
+    <input type="email" name="email" class="w-full px-4 py-2 border rounded-xl" required>
+  </div>
+
+  <div>
+    <label class="block text-gray-600 mb-1">Senha</label>
+    <input type="password" name="senha" class="w-full px-4 py-2 border rounded-xl" required minlength="6">
+  </div>
+
+  <div>
+    <label class="block text-gray-600 mb-1">Equipe</label>
+    <select name="equipe" class="w-full px-4 py-2 border rounded-xl" required>
+      <option value="">Selecione uma equipe</option>
+      <option value="TI">TI</option>
+      <option value="RH">RH</option>
+      <option value="Financeiro">Financeiro</option>
+      <option value="Vendas">Vendas</option>
+      <option value="Suporte">Suporte</option>
+      <option value="Diretoria">Diretoria</option>
+      <option value="Marketing">Marketing</option>
+    </select>
+  </div>
+
+  <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-xl hover:bg-indigo-700">
+    Cadastrar
+  </button>
+</form>
+    </div>
+  </div>
+</body>
 </html>

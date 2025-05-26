@@ -1,12 +1,179 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/painel-scrum-master.css">
-    <link rel="icon" href="./img/favicon/pastasfavicon-32x32.png">
-    <title>Painel Scrum Master</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel da Scrum Master - RH XP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --roxo: #6B21A8;
+      --laranja: #F97316;
+      --verde: #22C55E;
+    }
+    .bg-roxo { background-color: var(--roxo); }
+    .text-roxo { color: var(--roxo); }
+    .bg-laranja { background-color: var(--laranja); }
+    .text-laranja { color: var(--laranja); }
+    .bg-verde { background-color: var(--verde); }
+    .text-verde { color: var(--verde); }
+
+    #notificacao {
+      position: fixed;
+      top: 4rem;
+      right: 1rem;
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: white;
+      border: 1px solid #fbbf24;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(251,191,36,0.5);
+      padding: 1rem;
+      display: none;
+      z-index: 9999;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-gray-50 p-6 font-sans">
+
+  <!-- Botões Início e Notificações -->
+  <div class="fixed top-4 right-4 flex gap-3 z-50">
+    <a href="sobre.html" class="bg-verde text-white px-4 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow-md">
+      Início
+    </a>
+    <button id="btnToggleNotificacao" class="bg-laranja text-white px-4 py-2 rounded-full font-semibold hover:bg-orange-600 transition shadow-md">
+      Notificações
+    </button>
+  </div>
+
+  <!-- Painel de notificações -->
+  <div id="notificacao"></div>
+
+  <!-- Header -->
+  <header class="w-full max-w-6xl mx-auto flex items-center justify-between mb-8">
+    <div class="flex items-center gap-4">
+      <img src="C:\Users\Emill\OneDrive\Área de Trabalho\TCC-Gami-RH\img\colaborador\rejane.png" alt="Foto de Rejane" class="w-16 h-16 rounded-full border-2 border-roxo" />
+      <div>
+        <h1 class="text-2xl font-bold text-roxo">Rejane Revero</h1>
+        <p class="text-sm text-gray-600">Scrum Master</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cards de Indicadores -->
+  <section class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-roxo font-semibold text-lg mb-2">Sprints Concluídas</h2>
+      <p class="text-3xl font-bold text-roxo">12</p>
+    </div>
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-laranja font-semibold text-lg mb-2">Impedimentos Resolvidos</h2>
+      <p class="text-3xl font-bold text-laranja">8</p>
+    </div>
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-verde font-semibold text-lg mb-2">Participação nas Retros</h2>
+      <p class="text-3xl font-bold text-verde">100%</p>
+    </div>
+  </section>
+
+  <!-- Gráfico Burndown -->
+  <section class="w-full max-w-6xl mx-auto bg-white rounded-xl shadow p-6 mb-10">
+    <h2 class="text-xl font-bold text-roxo mb-4">Burndown da Sprint Atual</h2>
+    <canvas id="burndownChart"></canvas>
+  </section>
+
+  <!-- Missões da Scrum Master -->
+  <section class="w-full max-w-6xl mx-auto bg-white rounded-xl shadow p-6">
+    <h2 class="text-xl font-bold text-roxo mb-6">Missões da Rejane</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-purple-100 border-l-4 border-roxo p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-roxo text-lg mb-1">Facilitar Daily Meetings</h3>
+        <p class="text-gray-600 text-sm mb-2">Garantir que todas as dailies ocorram e sejam produtivas.</p>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-roxo h-3 rounded-full" style="width: 90%"></div>
+        </div>
+        <p class="text-right text-sm text-roxo font-medium mt-1">90% concluído</p>
+      </div>
+      <div class="bg-green-100 border-l-4 border-verde p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-verde text-lg mb-1">Remover Impedimentos</h3>
+        <p class="text-gray-600 text-sm mb-2">Resolver bloqueios junto aos times em até 24h.</p>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-verde h-3 rounded-full" style="width: 75%"></div>
+        </div>
+        <p class="text-right text-sm text-verde font-medium mt-1">75% concluído</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Script do Burndown Chart -->
+  <script>
+    const burndownCtx = document.getElementById('burndownChart').getContext('2d');
+    new Chart(burndownCtx, {
+      type: 'line',
+      data: {
+        labels: ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5'],
+        datasets: [
+          {
+            label: 'Planejado',
+            data: [40, 30, 20, 10, 0],
+            borderColor: '#6B21A8',
+            backgroundColor: 'rgba(107, 33, 168, 0.1)',
+            tension: 0.3
+          },
+          {
+            label: 'Real',
+            data: [40, 35, 25, 18, 8],
+            borderColor: '#F97316',
+            backgroundColor: 'rgba(249, 115, 22, 0.1)',
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+        }
+      }
+    });
+
+    // Missões da Rejane
+    const missoes = [
+      { nome: "Facilitar Daily Meetings", progresso: 90 },
+      { nome: "Remover Impedimentos", progresso: 75 }
+    ];
+
+    const notificacoes = [];
+    missoes.forEach(missao => {
+      if (missao.progresso === 100) {
+        notificacoes.push(`🎉 Parabéns Rejane! Você concluiu a missão "${missao.nome}".`);
+      } else if (missao.progresso >= 60 && missao.progresso < 100) {
+        notificacoes.push(`⏰ Rejane, atenção! A missão "${missao.nome}" está próxima da conclusão.`);
+      }
+    });
+
+    const container = document.getElementById("notificacao");
+    notificacoes.forEach(msg => {
+      const div = document.createElement("div");
+      div.className = "bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-3 rounded-lg shadow-md mb-3";
+      div.textContent = msg;
+      container.appendChild(div);
+    });
+
+    const btnToggle = document.getElementById("btnToggleNotificacao");
+    btnToggle.addEventListener("click", () => {
+      container.style.display = (container.style.display === "block") ? "none" : "block";
+    });
+  </script>
+
+</body>
 </html>
+
+
+
+
+
+
+

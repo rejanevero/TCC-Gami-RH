@@ -1,12 +1,65 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/historico-pontuacoes.css">
-    <link rel="icon" href="./img/favicon/clipfavicon-32x32.png">
-    <title>Histórico Pontuações</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RH XP - Histórico de Pontuações</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --roxo: #6B21A8;
+    }
+    .bg-roxo { background-color: var(--roxo); }
+    .text-roxo { color: var(--roxo); }
+  </style>
 </head>
-<body>
+<body class="bg-gray-50 min-h-screen p-6 font-sans">
+
+  <header class="max-w-4xl mx-auto mb-8">
+    <h1 class="text-3xl font-bold text-roxo mb-4">Histórico de Pontuações</h1>
+    <p class="text-gray-700 mb-6" id="nomeColaborador"></p>
+    <a href="painel-colaborador.html" class="text-roxo underline mb-6 inline-block">← Voltar ao painel</a>
+  </header>
+
+  <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-roxo text-white">
+          <th class="py-2 px-4 border border-white">Data</th>
+          <th class="py-2 px-4 border border-white">Missão</th>
+          <th class="py-2 px-4 border border-white">Pontos</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaPontuacoes">
+        <!-- Conteúdo dinâmico -->
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    // Simulando o colaborador (você poderá substituir depois para pegar dados reais)
+    const colaborador = {
+      nome: "Emilly Nayara",
+      pontuacoes: [
+        { data: "2025-05-01", missao: "Finalizar Onboarding", pontos: 500 },
+        { data: "2025-05-10", missao: "Entregar Projeto X", pontos: 700 },
+        { data: "2025-05-20", missao: "Participar de reuniões", pontos: 300 }
+      ]
+    };
+
+    document.getElementById("nomeColaborador").textContent = `Usuário: ${colaborador.nome}`;
+
+    const tbody = document.getElementById("tabelaPontuacoes");
+    colaborador.pontuacoes.forEach(registro => {
+      const tr = document.createElement("tr");
+      tr.className = "hover:bg-gray-100";
+      tr.innerHTML = `
+        <td class="border px-4 py-2">${registro.data}</td>
+        <td class="border px-4 py-2">${registro.missao}</td>
+        <td class="border px-4 py-2">${registro.pontos}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
 </html>

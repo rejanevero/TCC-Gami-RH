@@ -1,15 +1,238 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/painel-gerente.css">
-    <link rel="icon" href="./img/favicon/livroabertofavicon-32x32.png">
-    <title>Painel Gerente</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Gerente - RH XP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --roxo: #6B21A8;
+      --laranja: #F97316;
+      --verde: #22C55E;
+    }
+    .bg-roxo { background-color: var(--roxo); }
+    .text-roxo { color: var(--roxo); }
+    .bg-laranja { background-color: var(--laranja); }
+    .text-laranja { color: var(--laranja); }
+    .bg-verde { background-color: var(--verde); }
+    .text-verde { color: var(--verde); }
+
+    #notificacao {
+      position: fixed;
+      top: 4rem;
+      right: 1rem;
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: white;
+      border: 1px solid #fbbf24;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(251,191,36,0.5);
+      padding: 1rem;
+      display: none;
+      z-index: 9999;
+    }
+  </style>
 </head>
-<body>
-    <h1>Painel Gerente</h1>
-    <a href="index.html"> Voltar para a Página Inicial </a>
-    <body>
+<body class="bg-gray-50 p-6 font-sans">
+
+  <!-- Botões Início e Notificações -->
+<div class="fixed top-4 right-4 flex gap-3 z-50">
+  <a href="sobre.html" class="bg-verde text-white px-4 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow-md">
+    Início
+  </a>
+  <button id="btnToggleNotificacao" class="bg-laranja text-white px-4 py-2 rounded-full font-semibold hover:bg-orange-600 transition shadow-md">
+    Notificações
+  </button>
+</div>
+
+  <!-- Painel de notificações -->
+  <div id="notificacao"></div>
+
+  <!-- Header -->
+  <header class="w-full max-w-6xl mx-auto flex items-center justify-between mb-8">
+    <div class="flex items-center gap-4">
+      <img src="https://via.placeholder.com/60" alt="Foto de Cesar" class="w-16 h-16 rounded-full border-2 border-roxo" />
+      <div>
+        <h1 class="text-2xl font-bold text-roxo">Cesar Cari Eliseu</h1>
+        <p class="text-sm text-gray-600">Gerente de Equipe</p>
+      </div>
+    </div>
+    <div class="text-lg font-semibold text-gray-600">RH XP</div>
+  </header>
+
+  <!-- Gráficos -->
+  <section class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+    <div class="bg-white rounded-xl shadow p-4">
+      <h2 class="text-xl font-bold text-roxo mb-4">Ranking Geral dos Colaboradores</h2>
+      <canvas id="rankingChart"></canvas>
+    </div>
+    <div class="bg-white rounded-xl shadow p-4">
+      <h2 class="text-xl font-bold text-laranja mb-4">Metas da Equipe</h2>
+      <canvas id="metasEquipeChart"></canvas>
+    </div>
+  </section>
+
+  <!-- KPI do Gerente -->
+  <section class="w-full max-w-6xl mx-auto bg-white rounded-xl shadow p-6 mb-10">
+    <h2 class="text-xl font-bold text-verde mb-4">Seus KPIs</h2>
+    <canvas id="kpiGerenteChart"></canvas>
+  </section>
+
+  <!-- Colaboradores - lista dinâmica para futura integração -->
+  <section class="w-full max-w-6xl mx-auto bg-white rounded-xl shadow p-6 mb-10">
+    <h2 class="text-xl font-bold text-roxo mb-6">Colaboradores</h2>
+    <div id="listaColaboradores" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Cards de colaboradores serão inseridos aqui via JS -->
+    </div>
+  </section>
+
+  <!-- Missões do Gerente -->
+  <section class="w-full max-w-6xl mx-auto bg-white rounded-xl shadow p-6">
+    <h2 class="text-xl font-bold text-roxo mb-6">Suas Missões</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-purple-100 border-l-4 border-roxo p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-roxo text-lg mb-1">Acompanhar Feedbacks</h3>
+        <p class="text-gray-600 text-sm mb-2">Realize feedbacks mensais com todos da equipe.</p>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-roxo h-3 rounded-full" style="width: 100%"></div>
+        </div>
+        <p class="text-right text-sm text-roxo font-medium mt-1">100% concluído</p>
+      </div>
+      <div class="bg-orange-100 border-l-4 border-laranja p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-laranja text-lg mb-1">Definir Metas Q3</h3>
+        <p class="text-gray-600 text-sm mb-2">Crie e compartilhe as metas do próximo trimestre.</p>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-laranja h-3 rounded-full" style="width: 60%"></div>
+        </div>
+        <p class="text-right text-sm text-laranja font-medium mt-1">60% concluído</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts de Gráficos e Dinâmica -->
+  <script>
+    // Dados dos colaboradores para exibição e gráficos - futuramente integrar banco
+    const colaboradores = [
+      { nome: 'Rejane', pontuacao: 1500, foto: "C:/Users/Emill/OneDrive/Área de Trabalho/TCC-Gami-RH/img/colaborador/rejane.png", papel: 'Scrum Master', progressoMissao: 90 },
+      { nome: 'Emilly', pontuacao: 1200, foto: "C:/Users/Emill/OneDrive/Área de Trabalho/TCC-Gami-RH/img/colaborador/emilly.jpeg", papel: 'Desenvolvedora', progressoMissao: 80 },
+      { nome: 'Duda', pontuacao: 1100, foto: "C:/Users/Emill/OneDrive/Área de Trabalho/TCC-Gami-RH/img/colaborador/duda.png", papel: 'QA', progressoMissao: 75 },
+      { nome: 'Aline', pontuacao: 900, foto: "C:/Users/Emill/OneDrive/Área de Trabalho/TCC-Gami-RH/img/colaborador/aline.jpeg", papel: 'UX', progressoMissao: 95 },
+      { nome: 'Carlos', pontuacao: 850, foto: "C:/Users/Emill/OneDrive/Área de Trabalho/TCC-Gami-RH/img/colaborador/carlos.jpeg", papel: 'DevOps', progressoMissao: 65 },
+    ];
+
+    //lista dinâmica de colaboradores
+    const listaColabsDiv = document.getElementById('listaColaboradores');
+    colaboradores.forEach(c => {
+      const card = document.createElement('div');
+      card.className = 'bg-gray-100 rounded-lg p-4 shadow flex items-center gap-4';
+      card.innerHTML = `
+        <img src="${c.foto}" alt="Foto de ${c.nome}" class="w-14 h-14 rounded-full border-2 border-roxo" />
+        <div>
+          <h3 class="text-lg font-semibold text-roxo">${c.nome}</h3>
+          <p class="text-sm text-gray-600">${c.papel}</p>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+            <div class="bg-roxo h-2 rounded-full" style="width: ${c.progressoMissao}%"></div>
+          </div>
+          <p class="text-sm text-roxo font-medium mt-1">${c.progressoMissao}% da missão</p>
+        </div>
+      `;
+      listaColabsDiv.appendChild(card);
+    });
+
+    // Configuração do gráfico Ranking Geral incluindo destaque no Scrum Master
+    const rankingCtx = document.getElementById('rankingChart').getContext('2d');
+    const nomes = colaboradores.map(c => c.nome);
+    const pontuacoes = colaboradores.map(c => c.pontuacao);
+
+    // Colocar cores diferenciadas para Scrum Master e outros
+    const cores = colaboradores.map(c => c.papel === 'Scrum Master' ? '#6B21A8' : '#F97316');
+
+    new Chart(rankingCtx, {
+      type: 'bar',
+      data: {
+        labels: nomes,
+        datasets: [{
+          label: 'Pontuação',
+          data: pontuacoes,
+          backgroundColor: cores,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+          }
+        }
+      }
+    });
+
+    // Gráfico Metas da Equipe (exemplo estático)
+    const metasEquipeCtx = document.getElementById('metasEquipeChart').getContext('2d');
+    new Chart(metasEquipeCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Concluídas', 'Não Concluídas'],
+        datasets: [{
+          data: [70, 30],
+          backgroundColor: ['#22C55E', '#F97316']
+        }]
+      },
+      options: {
+        responsive: true,
+      }
+    });
+
+    // KPI do Gerente
+    const kpiGerenteCtx = document.getElementById('kpiGerenteChart').getContext('2d');
+    new Chart(kpiGerenteCtx, {
+      type: 'radar',
+      data: {
+        labels: ['Reuniões', 'Feedbacks', 'Metas Alcançadas', 'Retenção', 'Produtividade'],
+        datasets: [{
+          label: 'Desempenho',
+          data: [4, 5, 3, 4, 3.5],
+          backgroundColor: 'rgba(107, 33, 168, 0.2)',
+          borderColor: '#6B21A8'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            suggestedMin: 0,
+            suggestedMax: 5
+          }
+        }
+      }
+    });
+
+    // Notificações - exemplo simples
+    const notificacoes = [
+      "📢 Reunião de alinhamento amanhã às 10h.",
+      "✅ Meta Q2 alcançada por 80% da equipe.",
+      "⚠️ Feedbacks pendentes com alguns colaboradores."
+    ];
+
+    const container = document.getElementById("notificacao");
+    notificacoes.forEach(msg => {
+      const div = document.createElement("div");
+      div.className = "bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-3 rounded-lg shadow-md mb-3";
+      div.textContent = msg;
+      container.appendChild(div);
+    });
+
+    const btnToggle = document.getElementById("btnToggleNotificacao");
+    btnToggle.addEventListener("click", () => {
+      container.style.display = (container.style.display === "block") ? "none" : "block";
+    });
+  </script>
+</body>
 </html>
+

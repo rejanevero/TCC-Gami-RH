@@ -1,12 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/notificacoes.css">
-    <link rel="icon" href="./img/favicon/sinofavicon-32x32.png">
-    <title>Notificações</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notificações - RH XP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --roxo: #6B21A8;
+      --laranja: #F97316;
+      --verde: #22C55E;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-gray-100 font-sans p-6">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md">
+    <h1 class="text-2xl font-bold text-roxo mb-4">Central de Notificações</h1>
+
+    <ul id="lista-notificacoes" class="space-y-4">
+      <!-- Notificações serão inseridas aqui dinamicamente -->
+    </ul>
+  </div>
+
+  <script>
+    // Simulação de banco de notificações (poderia vir via API)
+    const notificacoes = [
+      {
+        usuario: 'Emilly',
+        tipo: 'missao_concluida',
+        mensagem: 'Missão "Completar onboarding" foi concluída com sucesso!',
+        publico: ['colaborador', 'gerente']
+      },
+      {
+        usuario: 'Carlos',
+        tipo: 'prazo_proximo',
+        mensagem: 'A missão "Entregar relatório semanal" está próxima do prazo final.',
+        publico: ['colaborador']
+      },
+      {
+        usuario: 'Rejane',
+        tipo: 'missao_concluida',
+        mensagem: 'Missão "Remover impedimentos" foi concluída com sucesso!',
+        publico: ['scrum_master']
+      },
+      {
+        usuario: 'Aline',
+        tipo: 'missao_concluida',
+        mensagem: 'Missão "Treinamento concluído" foi finalizada com êxito!',
+        publico: ['gerente']
+      }
+    ];
+
+    // Página que está visualizando (simulação)
+    const paginaAtual = window.location.pathname;
+    let perfil = '';
+
+    if (paginaAtual.includes('painel-colaborador')) perfil = 'colaborador';
+    else if (paginaAtual.includes('painel-gerente')) perfil = 'gerente';
+    else if (paginaAtual.includes('painel-scrum-master')) perfil = 'scrum_master';
+    else perfil = 'colaborador'; // fallback
+
+    const container = document.getElementById('lista-notificacoes');
+
+    const notificacoesFiltradas = notificacoes.filter(n => n.publico.includes(perfil));
+
+    notificacoesFiltradas.forEach(n => {
+      const li = document.createElement('li');
+      li.className = 'bg-gray-50 border-l-4 border-roxo p-4 rounded shadow';
+      li.innerHTML = `
+        <p class="text-sm text-gray-700"><strong>${n.usuario}</strong>: ${n.mensagem}</p>
+      `;
+      container.appendChild(li);
+    });
+  </script>
+</body>
 </html>
